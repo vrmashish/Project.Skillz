@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Project.Skillz.Models.Interview>
+
+@{
+    ViewBag.Title = "Table";
+}
+
+<h3 style="text-align: left; font: normal normal normal 14px/12px Lucida Console; letter-spacing: 0px; color: #BE1B35; opacity: 1;">Dashboard /</h3>
+<h2 style="text-align: left; font: normal normal normal 20px/12px Lucida Console; letter-spacing: 0px; color: #73737A; opacity: 1;">Interviews</h2>
+<div class="input-group" style="width:371px; text-align:left">
+    <input type="text" class="form-control" placeholder="Search">
+    <div class="input-group-btn">
+        <button class="btn btn-default" type="button">
+            <i class="glyphicon glyphicon-search"></i>
+        </button>
+    </div></div>
+<script>
+    $(document).ready(function () {
+        $('#select_all').click(function (e) {
+            $(this).closest('table').find('td input:checkbox').prop('checked', this.checked);
+        });
+    });
+</script>
+<p style="text-align: right; font: normal normal normal 14px/12px Lucida Console; letter-spacing: 0px; color: #FFFFFF; opacity: 1;">
+    <button type="button" class="btn btn-danger" style="border-radius:20px;"><span class="glyphicon glyphicon-plus">&nbsp;</span>@Html.ActionLink("New Interview", "Create", "Interview", new { Style = "color:#FFFFFF" })</button>
+    <button type="button" class="btn" style="border-radius:20px;"><span class="glyphicon glyphicon-remove">&nbsp;</span>@Html.ActionLink("Delete Selected", "Delete", "Interview", new { Style = "color:#2D2121" })</button>
+    <button type="button" class="btn" style="border-radius:20px;"><span class="glyphicon glyphicon-option-vertical">&nbsp;</span>@Html.ActionLink("More Options", "#", "Interview", new { Style = "color:#2D2121" })</button>
+</p>
+<table id="skillz" class="table table-condensed" style="background: #FFFFFF 0% 0% no-repeat padding-box; border: 1px solid #707070; opacity: 1;">
+    <thead style="        background: #F0F0F0 0% 0% no-repeat padding-box;
+        text-align: left;
+
+        font: normal normal normal 14px /12px Lucida Console;
+        letter-spacing: 0px;
+        color: #73737A;
+        opacity: 1;">
+        <tr>
+
+            <th><input type="checkbox" id="select_all" name="select_invoice" />
+                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serialNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterviewName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentModes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions)
+            </th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody style="text-align: left; font: normal normal normal 14px/12px Lucida Console; letter-spacing: 0px; color: #73737A; opacity: 1;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.selected)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serialNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SkillLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssessmentModes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Questions)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
