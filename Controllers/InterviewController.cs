@@ -39,5 +39,18 @@ namespace Project.Skillz.Controllers
             }
             return RedirectToAction("Table");
         }
+
+        public ActionResult New()
+        {
+            Interview temp1 = new Interview();
+            return View(temp1);
+        }
+        [HttpPost]
+        public ActionResult New(Interview interview)
+        {
+            interview.id = interviews.Count() + 1;
+            interviews.Add(interview);
+            return RedirectToAction("Table");
+        }
     }
 }
